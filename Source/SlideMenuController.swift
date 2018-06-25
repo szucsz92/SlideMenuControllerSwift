@@ -190,10 +190,18 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
         edgesForExtendedLayout = UIRectEdge()
     }
 
+    open override var shouldAutomaticallyForwardAppearanceMethods: Bool {
+        return false
+    }
+
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //automatically called 
-        //self.mainViewController?.viewWillAppear(animated)
+        self.mainViewController?.beginAppearanceTransition(true, animated: animated)
+    }
+
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.mainViewController?.endAppearanceTransition()
     }
     
     open override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
